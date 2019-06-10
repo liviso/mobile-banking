@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">mobilebanking</string>
+    <string name="create_account_text">Registrarse</string>
+
+    <string name="btn_login">Iniciar Sesión</string>
+    <string name="user">Usuario</string>
+    <string name="password">Contraseña</string>
 </resources>
