@@ -9,6 +9,9 @@
     <string name="enter_password">Ingresar contraseña</string>
     <string name="enter_user">Ingresar Usuario</string>
     <string name="title_activity_clients">ClientsActivity</string>
+    <string name="femenino">FEMENINO</string>
+    <string name="olivia_castillo_mendoza">Olivia Castillo Mendoza</string>
+    <string name="_24">24</string>
 
 
 </resources>
