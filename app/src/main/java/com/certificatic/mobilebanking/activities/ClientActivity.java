@@ -68,14 +68,10 @@ public class ClientActivity extends AppCompatActivity {
                         recyclerView.setAdapter(clientAdapter);
                     }else{
                         Toast.makeText(ClientActivity.this, "No hay datos", Toast.LENGTH_SHORT).show();
-
-
                     }
 
                 }else{
                     Toast.makeText(ClientActivity.this, "Error. Intente más tarde", Toast.LENGTH_SHORT).show();
-
-
                 }
             }
 
