@@ -17,9 +17,9 @@ public class ClientResponse {
     @SerializedName("nombre")
     @Expose
     private String nombre;
-    @SerializedName("sexo")
+    @SerializedName("genero")
     @Expose
-    private String sexo;
+    private String genero;
 
     /**
      * No args constructor for use in serialization
@@ -34,15 +34,15 @@ public class ClientResponse {
      * @param id
      * @param apellidos
      * @param edad
-     * @param sexo
+     * @param genero
      */
-    public ClientResponse(String apellidos, Integer edad, Integer id, String nombre, String sexo) {
+    public ClientResponse(String apellidos, Integer edad, Integer id, String nombre, String genero) {
         super();
         this.apellidos = apellidos;
         this.edad = edad;
         this.id = id;
         this.nombre = nombre;
-        this.sexo = sexo;
+        this.genero = genero;
     }
 
     public String getApellidos() {
@@ -77,12 +77,12 @@ public class ClientResponse {
         this.nombre = nombre;
     }
 
-    public String getSexo() {
-        return sexo;
+    public String getGenero() {
+        return genero;
     }
 
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
+    public void setGenero(String genero) {
+        this.genero = genero;
     }
 
     @Override
@@ -92,7 +92,7 @@ public class ClientResponse {
                 ", edad=" + edad +
                 ", id=" + id +
                 ", nombre='" + nombre + '\'' +
-                ", sexo='" + sexo + '\'' +
+                ", genero='" + genero + '\'' +
                 '}';
     }
 }

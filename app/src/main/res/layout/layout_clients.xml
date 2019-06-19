@@ -46,7 +46,17 @@
                 android:layout_below="@id/clientAge"
                 android:textColor="#000000" />
 
+            <ImageView
+                android:id="@+id/removeItem"
+                android:layout_width="40dp"
+                android:layout_height="30dp"
+                android:layout_alignEnd="@+id/clientName"
+                android:layout_centerVertical="true"
+                android:layout_gravity="right"
+                android:src="@drawable/ic_delete_red_24dp" />
+
            </RelativeLayout>
+
     </android.support.v7.widget.CardView>
 
 </LinearLayout>

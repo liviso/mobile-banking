@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.certificatic.mobilebanking.R;
@@ -31,12 +32,18 @@ public class ClientAdapter  extends RecyclerView.Adapter<ClientAdapter.ClientVie
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ClientAdapter.ClientViewHolder holder, int position) {
-        ClientResponse client= clients.get(position);
-
+    public void onBindViewHolder(@NonNull ClientAdapter.ClientViewHolder holder, final int position) {
+        final ClientResponse client= clients.get(position);
         holder.clientNameTx.setText(client.getNombre());
-        holder.clienteGenderTx.setText(client.getSexo());
+        holder.clienteGenderTx.setText(client.getGenero());
         holder.clientAgeTx.setText(client.getEdad().toString());
+        holder.removeItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            clients.remove(position);
+                notifyDataSetChanged();
+            }
+        });
     }
 
     @Override
@@ -47,12 +54,15 @@ public class ClientAdapter  extends RecyclerView.Adapter<ClientAdapter.ClientVie
     class ClientViewHolder extends RecyclerView.ViewHolder {
 
         TextView clientNameTx, clientAgeTx, clienteGenderTx;
+        ImageView removeItem;
 
         public ClientViewHolder(@NonNull View itemView) {
             super(itemView);
             clientNameTx= itemView.findViewById(R.id.clientName);
             clientAgeTx= itemView.findViewById(R.id.clientAge);
             clienteGenderTx= itemView.findViewById(R.id.clientGender);
+            removeItem=itemView.findViewById(R.id.removeItem);
+
         }
     }
 }
