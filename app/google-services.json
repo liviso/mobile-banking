@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1012566837115",
+    "firebase_url": "https://mobilebanking-a429a.firebaseio.com",
+    "project_id": "mobilebanking-a429a",
+    "storage_bucket": "mobilebanking-a429a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1012566837115:android:392367fffcfc6e12",
+        "android_client_info": {
+          "package_name": "com.certificatic.mobilebanking"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1012566837115-hjsajk6o2k7f56enokoai3kba9ffl135.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDTmFWTbAm0aAhP12koLTnfZTfm_radskA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1012566837115-hjsajk6o2k7f56enokoai3kba9ffl135.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
