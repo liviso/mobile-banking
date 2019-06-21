@@ -1,6 +1,7 @@
-package com.certificatic.mobilebanking.retrofit;
+package com.certificatic.mobilebanking.retrofit.client;
 
 import com.certificatic.mobilebanking.common.Constants;
+import com.certificatic.mobilebanking.retrofit.service.LoginService;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

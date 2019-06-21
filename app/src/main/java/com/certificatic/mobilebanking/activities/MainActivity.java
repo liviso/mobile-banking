@@ -8,10 +8,10 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.certificatic.mobilebanking.R;
-import com.certificatic.mobilebanking.retrofit.LoginClient;
-import com.certificatic.mobilebanking.retrofit.LoginService;
-import com.certificatic.mobilebanking.retrofit.request.RequestLogin;
-import com.certificatic.mobilebanking.retrofit.response.UserResponse;
+import com.certificatic.mobilebanking.retrofit.client.LoginClient;
+import com.certificatic.mobilebanking.retrofit.service.LoginService;
+import com.certificatic.mobilebanking.retrofit.model.Login;
+import com.certificatic.mobilebanking.retrofit.model.User;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -56,11 +56,11 @@ public class MainActivity extends AppCompatActivity {
             passwordEt.setError(getString(R.string.enter_password));
 
         } else {
-            RequestLogin requestLogin= new RequestLogin(password, user);
-            Call<UserResponse> call= loginService.doLogin(requestLogin);
-            call.enqueue(new Callback<UserResponse>() {
+            Login requestLogin= new Login(password, user);
+            Call<User> call= loginService.doLogin(requestLogin);
+            call.enqueue(new Callback<User>() {
                 @Override
-                public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+                public void onResponse(Call<User> call, Response<User> response) {
                     if(response.isSuccessful()){
 
                         Toast.makeText(MainActivity.this, "Bienvenido", Toast.LENGTH_SHORT).show();
@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 @Override
-                public void onFailure(Call<UserResponse> call, Throwable t) {
+                public void onFailure(Call<User> call, Throwable t) {
                     Toast.makeText(MainActivity.this, "Error en la conexión. Intente más tarde", Toast.LENGTH_SHORT).show();
                 }
             });

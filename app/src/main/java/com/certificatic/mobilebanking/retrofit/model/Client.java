@@ -1,9 +1,9 @@
-package com.certificatic.mobilebanking.retrofit.response;
+package com.certificatic.mobilebanking.retrofit.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class ClientResponse {
+public class Client {
 
     @SerializedName("apellidos")
     @Expose
@@ -21,11 +21,13 @@ public class ClientResponse {
     @Expose
     private String genero;
 
+    private String direccion;
+
     /**
      * No args constructor for use in serialization
      *
      */
-    public ClientResponse() {
+    public Client() {
     }
 
     /**
@@ -36,7 +38,7 @@ public class ClientResponse {
      * @param edad
      * @param genero
      */
-    public ClientResponse(String apellidos, Integer edad, Integer id, String nombre, String genero) {
+    public Client(String apellidos, Integer edad, Integer id, String nombre, String genero) {
         super();
         this.apellidos = apellidos;
         this.edad = edad;
@@ -85,14 +87,23 @@ public class ClientResponse {
         this.genero = genero;
     }
 
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
     @Override
     public String toString() {
-        return "ClientResponse{" +
+        return "Client{" +
                 "apellidos='" + apellidos + '\'' +
                 ", edad=" + edad +
                 ", id=" + id +
                 ", nombre='" + nombre + '\'' +
                 ", genero='" + genero + '\'' +
+                ", direccion='" + direccion + '\'' +
                 '}';
     }
 }

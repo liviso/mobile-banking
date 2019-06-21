@@ -10,16 +10,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.certificatic.mobilebanking.R;
-import com.certificatic.mobilebanking.retrofit.response.ClientResponse;
+import com.certificatic.mobilebanking.retrofit.model.Client;
 
 import java.util.List;
 
 public class ClientAdapter  extends RecyclerView.Adapter<ClientAdapter.ClientViewHolder>{
 
-    private List<ClientResponse> clients;
+    private List<Client> clients;
     private Context context;
 
-    public ClientAdapter(Context ctx, List<ClientResponse> clients){
+    public ClientAdapter(Context ctx, List<Client> clients){
         this.clients=clients;
         this.context=ctx;
     }
@@ -33,7 +33,7 @@ public class ClientAdapter  extends RecyclerView.Adapter<ClientAdapter.ClientVie
 
     @Override
     public void onBindViewHolder(@NonNull ClientAdapter.ClientViewHolder holder, final int position) {
-        final ClientResponse client= clients.get(position);
+        final Client client= clients.get(position);
         holder.clientNameTx.setText(client.getNombre());
         holder.clienteGenderTx.setText(client.getGenero());
         holder.clientAgeTx.setText(client.getEdad().toString());

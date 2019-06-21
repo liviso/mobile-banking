@@ -1,9 +1,9 @@
-package com.certificatic.mobilebanking.retrofit.response;
+package com.certificatic.mobilebanking.retrofit.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class UserResponse {
+public class User {
 
     @SerializedName("lastName")
     @Expose
@@ -24,7 +24,7 @@ public class UserResponse {
     /**
      * No args constructor for use in serialization
      */
-    public UserResponse() {
+    public User() {
     }
 
     /**
@@ -34,7 +34,7 @@ public class UserResponse {
      * @param rol
      * @param password
      */
-    public UserResponse(String lastName, String name, String password, String rol, String userId) {
+    public User(String lastName, String name, String password, String rol, String userId) {
         super();
         this.lastName = lastName;
         this.name = name;

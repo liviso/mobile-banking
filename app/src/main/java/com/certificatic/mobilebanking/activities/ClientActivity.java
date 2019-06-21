@@ -3,7 +3,7 @@ package com.certificatic.mobilebanking.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,13 +12,16 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.certificatic.mobilebanking.R;
 import com.certificatic.mobilebanking.adapters.ClientAdapter;
-import com.certificatic.mobilebanking.retrofit.ClientService;
-import com.certificatic.mobilebanking.retrofit.CustomerClient;
-import com.certificatic.mobilebanking.retrofit.response.ClientResponse;
+import com.certificatic.mobilebanking.retrofit.client.CustomerClient;
+import com.certificatic.mobilebanking.retrofit.model.Client;
+import com.certificatic.mobilebanking.retrofit.service.ClientService;
 
 import java.util.List;
 
@@ -26,61 +29,71 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ClientActivity extends AppCompatActivity {
+public class ClientActivity extends AppCompatActivity
+{
 
     RecyclerView recyclerView;
     ClientService clientService;
     CustomerClient customerClient;
+    AlertDialog dialog;
+    View cView;
+    List<Client> clients;
+    ClientAdapter clientAdapter;
+
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clients);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         init();
         retrieveClients();
+        showAlertDialog();
     }
 
-    private void init(){
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+
+    private void init()
+    {
+        recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        customerClient= CustomerClient.getInstance();
-        clientService= customerClient.getclientService();
+        customerClient = CustomerClient.getInstance();
+        clientService = customerClient.getclientService();
     }
 
-    private void retrieveClients(){
-        Call<List<ClientResponse>> call= clientService.getClients();
-        call.enqueue(new Callback<List<ClientResponse>>() {
-            @Override
-            public void onResponse(Call<List<ClientResponse>> call, Response<List<ClientResponse>> response) {
-                if(response.isSuccessful()){
-                    if(response.raw().body()!=null){
 
-                        List<ClientResponse> clients= (List<ClientResponse>) response.body();
-                        ClientAdapter clientAdapter= new ClientAdapter(ClientActivity.this, clients);
+    private void retrieveClients()
+    {
+        Call<List<Client>> call = clientService.getClients();
+        call.enqueue(new Callback<List<Client>>() {
+            @Override
+            public void onResponse(Call<List<Client>> call, Response<List<Client>> response)
+            {
+                if(response.isSuccessful()) {
+                    if(response.raw().body() != null) {
+
+                        clients = (List<Client>)response.body();
+                        clientAdapter = new ClientAdapter(ClientActivity.this, clients);
                         recyclerView.setAdapter(clientAdapter);
-                    }else{
+                    }
+                    else {
                         Toast.makeText(ClientActivity.this, "No hay datos", Toast.LENGTH_SHORT).show();
                     }
 
-                }else{
+                }
+                else {
                     Toast.makeText(ClientActivity.this, "Error. Intente más tarde", Toast.LENGTH_SHORT).show();
                 }
             }
 
+
+
             @Override
-            public void onFailure(Call<List<ClientResponse>> call, Throwable t) {
+            public void onFailure(Call<List<Client>> call, Throwable t)
+            {
                 Toast.makeText(ClientActivity.this, "Error. Intente más tarde", Toast.LENGTH_SHORT).show();
 
             }
@@ -88,21 +101,96 @@ public class ClientActivity extends AppCompatActivity {
     }
 
 
+
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
+
+
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch(item.getItemId()){
-            case R.id.menuLogout:
-                Intent intent= new Intent(this, MainActivity.class);
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch(item.getItemId()) {
+            case R.id.menuLogout :
+                Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
                 finish();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void showAlertDialog()
+    {
+        FloatingActionButton fab = (FloatingActionButton)findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+
+                AlertDialog.Builder mBuilder = new AlertDialog.Builder(ClientActivity.this);
+                cView = getLayoutInflater().inflate(R.layout.dialog_add_client, null);
+                mBuilder.setView(cView);
+                dialog = mBuilder.create();
+
+                dialog.show();
+                dialog.getWindow().setLayout(950, 1200);
+
+            }
+        });
+    }
+
+    public void addClient(View view)
+    {
+        dialog.dismiss();
+
+        EditText nameEt = (EditText)cView.findViewById(R.id.nameEt);
+        EditText lastNameEt = (EditText)cView.findViewById(R.id.lastNameEt);
+        EditText ageEd = (EditText)cView.findViewById(R.id.ageEt);
+        EditText addressEt = (EditText)cView.findViewById(R.id.addressEt);
+        RadioGroup genderRg = (RadioGroup)cView.findViewById(R.id.genderRg);
+
+        int selectId = genderRg.getCheckedRadioButtonId();
+
+        RadioButton gender = (RadioButton)cView.findViewById(selectId);
+
+        Client client = new Client();
+        client.setNombre(nameEt.getText().toString());
+        client.setApellidos(lastNameEt.getText().toString());
+        client.setEdad(Integer.parseInt(ageEd.getText().toString()));
+        client.setDireccion(addressEt.getText().toString());
+        ClientResponseForAdd clientResponseForAdd = new ClientResponseForAdd();
+        client.setGenero(gender.getText().toString());
+        Call<Client> call = clientService.addClient(client);
+        call.enqueue(clientResponseForAdd);
+    }
+
+    class ClientResponseForAdd implements Callback<Client>
+    {
+
+        @Override
+        public void onResponse(Call<Client> call, Response<Client> response)
+        {
+            if(response.code() == 200) {
+                Toast.makeText(ClientActivity.this, "Se agrego correctamente.", Toast.LENGTH_SHORT).show();
+                Client client = (Client)response.body();
+                clients.add(client);
+                clientAdapter = new ClientAdapter(ClientActivity.this, clients);
+                recyclerView.setAdapter(clientAdapter);
+            }
+
+        }
+
+
+
+        @Override
+        public void onFailure(Call<Client> call, Throwable t)
+        {
+            Toast.makeText(ClientActivity.this, "Error. Intente más tarde", Toast.LENGTH_SHORT).show();
+        }
     }
 }
