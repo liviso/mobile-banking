@@ -31,6 +31,9 @@ public class MainActivity extends AppCompatActivity {
 
         retrofitInit();
         findViews();
+
+
+
     }
 
     public void retrofitInit() {

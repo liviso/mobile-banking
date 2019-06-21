@@ -22,7 +22,12 @@
         <activity
             android:name=".activities.ClientActivity"
             android:label="@string/title_activity_clients"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="6d5abf062100739f231f78bd35b8ad7ce2b9430f" />
+
     </application>
 
 </manifest>

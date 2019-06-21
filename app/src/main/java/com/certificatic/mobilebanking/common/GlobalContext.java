@@ -2,6 +2,8 @@ package com.certificatic.mobilebanking.common;
 
 import android.app.Application;
 import android.content.Context;
+import com.crashlytics.android.Crashlytics;
+import io.fabric.sdk.android.Fabric;
 
 public class GlobalContext extends Application{
 
@@ -19,5 +21,6 @@ public class GlobalContext extends Application{
     public void onCreate() {
         instance=this;
         super.onCreate();
+        Fabric.with(this, new Crashlytics());
     }
 }
