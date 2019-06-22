@@ -12,7 +12,7 @@ public class LoginClient {
     private LoginService loginService;
     private Retrofit retrofit;
 
-    public LoginClient() {
+    private LoginClient() {
         retrofit = new Retrofit.Builder()
                 .baseUrl(Constants.API_LOGIN_BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
