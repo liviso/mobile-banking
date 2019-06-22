@@ -134,7 +134,7 @@ public class ClientActivity extends AppCompatActivity implements OnItemClicked
 
     private void showAlertDialog()
     {
-        FloatingActionButton fab = (FloatingActionButton)findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
@@ -158,15 +158,15 @@ public class ClientActivity extends AppCompatActivity implements OnItemClicked
     {
         dialog.dismiss();
 
-        EditText nameEt = (EditText)cView.findViewById(R.id.nameEt);
-        EditText lastNameEt = (EditText)cView.findViewById(R.id.lastNameEt);
-        EditText ageEd = (EditText)cView.findViewById(R.id.ageEt);
-        EditText addressEt = (EditText)cView.findViewById(R.id.addressEt);
-        RadioGroup genderRg = (RadioGroup)cView.findViewById(R.id.genderRg);
+        EditText nameEt = cView.findViewById(R.id.nameEt);
+        EditText lastNameEt = cView.findViewById(R.id.lastNameEt);
+        EditText ageEd = cView.findViewById(R.id.ageEt);
+        EditText addressEt = cView.findViewById(R.id.addressEt);
+        RadioGroup genderRg = cView.findViewById(R.id.genderRg);
 
         int selectId = genderRg.getCheckedRadioButtonId();
 
-        RadioButton gender = (RadioButton)cView.findViewById(selectId);
+        RadioButton gender = cView.findViewById(selectId);
 
         Client client = new Client();
         client.setNombre(nameEt.getText().toString());
@@ -187,7 +187,7 @@ public class ClientActivity extends AppCompatActivity implements OnItemClicked
         {
             if(response.code() == 200) {
                 Toast.makeText(ClientActivity.this, "Se agrego correctamente.", Toast.LENGTH_SHORT).show();
-                Client client = (Client)response.body();
+                Client client = response.body();
                 clients.add(client);
                 recyclerView.setAdapter(clientAdapter);
             }
