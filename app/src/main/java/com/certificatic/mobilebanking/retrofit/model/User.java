@@ -1,24 +1,16 @@
 package com.certificatic.mobilebanking.retrofit.model;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
-
 public class User {
 
-    @SerializedName("lastName")
-    @Expose
+
     private String lastName;
-    @SerializedName("name")
-    @Expose
+
     private String name;
-    @SerializedName("password")
-    @Expose
+
     private String password;
-    @SerializedName("rol")
-    @Expose
+
     private String rol;
-    @SerializedName("userId")
-    @Expose
+
     private String userId;
 
     /**

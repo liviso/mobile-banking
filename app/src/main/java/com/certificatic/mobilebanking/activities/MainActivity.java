@@ -9,15 +9,15 @@ import android.widget.Toast;
 
 import com.certificatic.mobilebanking.R;
 import com.certificatic.mobilebanking.retrofit.client.LoginClient;
-import com.certificatic.mobilebanking.retrofit.service.LoginService;
 import com.certificatic.mobilebanking.retrofit.model.Login;
 import com.certificatic.mobilebanking.retrofit.model.User;
+import com.certificatic.mobilebanking.retrofit.service.LoginService;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity  {
 
     private EditText idUserEt;
     private EditText passwordEt;
@@ -82,4 +82,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+
 }

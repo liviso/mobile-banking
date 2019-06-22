@@ -5,20 +5,15 @@ import com.google.gson.annotations.SerializedName;
 
 public class Client {
 
-    @SerializedName("apellidos")
-    @Expose
+
     private String apellidos;
-    @SerializedName("edad")
-    @Expose
+
     private Integer edad;
-    @SerializedName("id")
-    @Expose
+
     private Integer id;
-    @SerializedName("nombre")
-    @Expose
+
     private String nombre;
-    @SerializedName("genero")
-    @Expose
+
     private String genero;
 
     private String direccion;

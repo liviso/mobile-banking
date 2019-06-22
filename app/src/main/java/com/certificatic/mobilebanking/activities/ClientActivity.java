@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.certificatic.mobilebanking.R;
 import com.certificatic.mobilebanking.adapters.ClientAdapter;
+import com.certificatic.mobilebanking.adapters.OnItemClicked;
 import com.certificatic.mobilebanking.retrofit.client.CustomerClient;
 import com.certificatic.mobilebanking.retrofit.model.Client;
 import com.certificatic.mobilebanking.retrofit.service.ClientService;
@@ -29,7 +30,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ClientActivity extends AppCompatActivity
+public class ClientActivity extends AppCompatActivity implements OnItemClicked
 {
 
     RecyclerView recyclerView;
@@ -56,13 +57,16 @@ public class ClientActivity extends AppCompatActivity
     }
 
 
+
     private void init()
     {
         recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         customerClient = CustomerClient.getInstance();
         clientService = customerClient.getclientService();
+
     }
+
 
 
     private void retrieveClients()
@@ -78,6 +82,8 @@ public class ClientActivity extends AppCompatActivity
                         clients = (List<Client>)response.body();
                         clientAdapter = new ClientAdapter(ClientActivity.this, clients);
                         recyclerView.setAdapter(clientAdapter);
+                        clientAdapter.setOnClick(ClientActivity.this);
+
                     }
                     else {
                         Toast.makeText(ClientActivity.this, "No hay datos", Toast.LENGTH_SHORT).show();
@@ -124,6 +130,8 @@ public class ClientActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+
+
     private void showAlertDialog()
     {
         FloatingActionButton fab = (FloatingActionButton)findViewById(R.id.fab);
@@ -143,6 +151,8 @@ public class ClientActivity extends AppCompatActivity
             }
         });
     }
+
+
 
     public void addClient(View view)
     {
@@ -179,7 +189,6 @@ public class ClientActivity extends AppCompatActivity
                 Toast.makeText(ClientActivity.this, "Se agrego correctamente.", Toast.LENGTH_SHORT).show();
                 Client client = (Client)response.body();
                 clients.add(client);
-                clientAdapter = new ClientAdapter(ClientActivity.this, clients);
                 recyclerView.setAdapter(clientAdapter);
             }
 
@@ -193,4 +202,15 @@ public class ClientActivity extends AppCompatActivity
             Toast.makeText(ClientActivity.this, "Error. Intente más tarde", Toast.LENGTH_SHORT).show();
         }
     }
+
+
+
+    @Override
+    public void onItemClick(int position)
+    {
+        clients.remove(position);
+        recyclerView.setAdapter(clientAdapter);
+        System.out.println("Eliminando posicion");
+    }
+
 }

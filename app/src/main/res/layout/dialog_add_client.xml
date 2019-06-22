@@ -6,16 +6,18 @@
     android:layout_height="match_parent">
 
     <EditText
-        android:id="@+id/lastNameEt"
-        android:layout_width="226dp"
-        android:layout_height="47dp"
+        android:id="@+id/nameEt"
+        android:layout_width="228dp"
+        android:layout_height="45dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="12dp"
-        android:hint="Apellidos"
+        android:hint="Nombre"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintHorizontal_bias="0.533"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toBottomOf="@+id/nameEt" />
+        app:layout_constraintTop_toBottomOf="@+id/addClientTv" />
+
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline"
@@ -51,17 +53,17 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/nameEt"
-        android:layout_width="228dp"
-        android:layout_height="45dp"
+        android:id="@+id/lastNameEt"
+        android:layout_width="226dp"
+        android:layout_height="47dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="12dp"
-        android:hint="Nombre"
+        android:hint="Apellidos"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintHorizontal_bias="0.533"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toBottomOf="@+id/addClientTv" />
+        app:layout_constraintTop_toBottomOf="@+id/nameEt" />
+
 
     <EditText
         android:id="@+id/ageEt"
@@ -92,7 +94,7 @@
 
         <RadioButton
             android:id="@+id/maleRd"
-            android:layout_width="wrap_content"
+            android:layout_width="122dp"
             android:layout_height="wrap_content"
             android:text="Masculino" />
 
