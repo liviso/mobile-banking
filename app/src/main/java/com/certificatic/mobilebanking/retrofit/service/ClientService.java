@@ -6,8 +6,10 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 
 public interface ClientService {
@@ -17,4 +19,7 @@ public interface ClientService {
 
     @POST("/api/v1/cliente")
     Call <Client> addClient(@Body Client client);
+
+    @DELETE("/api/v1/cliente/{id}")
+    Call<Void> removeClient(@Path("id") Integer idClient);
 }

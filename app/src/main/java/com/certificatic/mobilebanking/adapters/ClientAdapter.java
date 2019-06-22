@@ -50,9 +50,10 @@ public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ClientView
     public void onBindViewHolder(@NonNull ClientAdapter.ClientViewHolder holder, final int position)
     {
         final Client client = clients.get(position);
-        holder.clientNameTx.setText(client.getNombre());
-        holder.clienteGenderTx.setText(client.getGenero());
-        holder.clientAgeTx.setText(client.getEdad().toString());
+        holder.clientNameTx.setText(client.getNombre().concat(" ").concat(client.getApellidos()));
+        holder.clienteGenderTx.setText("Género: "+client.getGenero());
+        holder.clientAgeTx.setText("Edad: "+client.getEdad());
+        holder.clientAddressTx.setText("Dirección: "+client.getDireccion().toString());
 
         holder.removeItem.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,7 +75,7 @@ public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ClientView
     class ClientViewHolder extends RecyclerView.ViewHolder
     {
 
-        TextView clientNameTx, clientAgeTx, clienteGenderTx;
+        TextView clientNameTx, clientAgeTx, clienteGenderTx, clientAddressTx;
         ImageView removeItem;
 
 
@@ -85,7 +86,9 @@ public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ClientView
             clientNameTx = itemView.findViewById(R.id.clientName);
             clientAgeTx = itemView.findViewById(R.id.clientAge);
             clienteGenderTx = itemView.findViewById(R.id.clientGender);
+            clientAddressTx= itemView.findViewById(R.id.clientAddressTx);
             removeItem = itemView.findViewById(R.id.removeItem);
+
 
         }
     }

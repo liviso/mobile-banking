@@ -206,11 +206,28 @@ public class ClientActivity extends AppCompatActivity implements OnItemClicked
 
 
     @Override
-    public void onItemClick(int position)
+    public void onItemClick(final int position)
     {
-        clients.remove(position);
-        recyclerView.setAdapter(clientAdapter);
-        System.out.println("Eliminando posicion");
+
+        Call<Void> call = clientService.removeClient(clients.get(position).getId());
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if(response.code() ==200){
+                    Toast.makeText(ClientActivity.this, "El cliente se eliminó exitosamente.", Toast.LENGTH_SHORT).show();
+                    clients.remove(position);
+                    recyclerView.setAdapter(clientAdapter);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Toast.makeText(ClientActivity.this, "Error. Intente más tarde", Toast.LENGTH_SHORT).show();
+
+            }
+        });
     }
+
+
 
 }
