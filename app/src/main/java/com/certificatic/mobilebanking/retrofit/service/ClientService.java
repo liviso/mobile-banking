@@ -14,8 +14,8 @@ import retrofit2.http.Path;
 
 public interface ClientService {
 
-    @GET("/api/v1/cliente")
-    Call  <List<Client>> getClients();
+    @GET("/api/v1/tarjeta")
+    Call  <List<Client>> getCards();
 
     @POST("/api/v1/cliente")
     Call <Client> addClient(@Body Client client);

@@ -6,56 +6,29 @@ import com.google.gson.annotations.SerializedName;
 public class Client {
 
 
-    private String apellidos;
-
-    private Integer edad;
-
     private Integer id;
+    private String nombreTitular;
+    private String nombreEntidad;
+    private String numeroTarjeta;
+    private String cvv;
+    private String fechaCaudicidad;
+    private String marca;
 
-    private String nombre;
-
-    private String genero;
-
-    private String direccion;
+    public Client(Integer id, String nombreTitular, String nombreEntidad, String numeroTarjeta, String cvv, String fechaCaudicidad, String marca) {
+        this.id = id;
+        this.nombreTitular = nombreTitular;
+        this.nombreEntidad = nombreEntidad;
+        this.numeroTarjeta = numeroTarjeta;
+        this.cvv = cvv;
+        this.fechaCaudicidad = fechaCaudicidad;
+        this.marca = marca;
+    }
 
     /**
      * No args constructor for use in serialization
      *
      */
     public Client() {
-    }
-
-    /**
-     *
-     * @param nombre
-     * @param id
-     * @param apellidos
-     * @param edad
-     * @param genero
-     */
-    public Client(String apellidos, Integer edad, Integer id, String nombre, String genero) {
-        super();
-        this.apellidos = apellidos;
-        this.edad = edad;
-        this.id = id;
-        this.nombre = nombre;
-        this.genero = genero;
-    }
-
-    public String getApellidos() {
-        return apellidos;
-    }
-
-    public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
-    }
-
-    public Integer getEdad() {
-        return edad;
-    }
-
-    public void setEdad(Integer edad) {
-        this.edad = edad;
     }
 
     public Integer getId() {
@@ -66,39 +39,51 @@ public class Client {
         this.id = id;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getNombreTitular() {
+        return nombreTitular;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombreTitular(String nombreTitular) {
+        this.nombreTitular = nombreTitular;
     }
 
-    public String getGenero() {
-        return genero;
+    public String getNombreEntidad() {
+        return nombreEntidad;
     }
 
-    public void setGenero(String genero) {
-        this.genero = genero;
+    public void setNombreEntidad(String nombreEntidad) {
+        this.nombreEntidad = nombreEntidad;
     }
 
-    public String getDireccion() {
-        return direccion;
+    public String getNumeroTarjeta() {
+        return numeroTarjeta;
     }
 
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
+    public void setNumeroTarjeta(String numeroTarjeta) {
+        this.numeroTarjeta = numeroTarjeta;
     }
 
-    @Override
-    public String toString() {
-        return "Client{" +
-                "apellidos='" + apellidos + '\'' +
-                ", edad=" + edad +
-                ", id=" + id +
-                ", nombre='" + nombre + '\'' +
-                ", genero='" + genero + '\'' +
-                ", direccion='" + direccion + '\'' +
-                '}';
+    public String getCvv() {
+        return cvv;
+    }
+
+    public void setCvv(String cvv) {
+        this.cvv = cvv;
+    }
+
+    public String getFechaCaudicidad() {
+        return fechaCaudicidad;
+    }
+
+    public void setFechaCaudicidad(String fechaCaudicidad) {
+        this.fechaCaudicidad = fechaCaudicidad;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
     }
 }

@@ -50,10 +50,11 @@ public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ClientView
     public void onBindViewHolder(@NonNull ClientAdapter.ClientViewHolder holder, final int position)
     {
         final Client client = clients.get(position);
-        holder.clientNameTx.setText(client.getNombre().concat(" ").concat(client.getApellidos()));
-        holder.clienteGenderTx.setText("Género: "+client.getGenero());
-        holder.clientAgeTx.setText("Edad: "+client.getEdad());
-        holder.clientAddressTx.setText("Dirección: "+client.getDireccion().toString());
+        System.out.println("CLIENT: "+client.toString());
+        holder.clientNameTx.setText(client.getNombreTitular());
+        holder.clienteGenderTx.setText("Cvv: "+client.getCvv());
+        holder.clientAgeTx.setText("Tarjeta: "+client.getNumeroTarjeta());
+        holder.clientAddressTx.setText("Marca: "+client.getMarca());
 
         holder.removeItem.setOnClickListener(new View.OnClickListener() {
             @Override

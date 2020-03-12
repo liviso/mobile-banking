@@ -71,7 +71,7 @@ public class ClientActivity extends AppCompatActivity implements OnItemClicked
 
     private void retrieveClients()
     {
-        Call<List<Client>> call = clientService.getClients();
+        Call<List<Client>> call = clientService.getCards();
         call.enqueue(new Callback<List<Client>>() {
             @Override
             public void onResponse(Call<List<Client>> call, Response<List<Client>> response)
@@ -169,12 +169,12 @@ public class ClientActivity extends AppCompatActivity implements OnItemClicked
         RadioButton gender = cView.findViewById(selectId);
 
         Client client = new Client();
-        client.setNombre(nameEt.getText().toString());
-        client.setApellidos(lastNameEt.getText().toString());
-        client.setEdad(Integer.parseInt(ageEd.getText().toString()));
-        client.setDireccion(addressEt.getText().toString());
+        client.setNombreTitular(nameEt.getText().toString());
+        client.setNombreEntidad(lastNameEt.getText().toString());
+        client.setNumeroTarjeta(ageEd.getText().toString());
+        client.setMarca(addressEt.getText().toString());
         ClientResponseForAdd clientResponseForAdd = new ClientResponseForAdd();
-        client.setGenero(gender.getText().toString());
+        client.setCvv(gender.getText().toString());
         Call<Client> call = clientService.addClient(client);
         call.enqueue(clientResponseForAdd);
     }
