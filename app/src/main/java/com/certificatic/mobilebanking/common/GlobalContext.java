@@ -21,6 +21,5 @@ public class GlobalContext extends Application{
     public void onCreate() {
         instance=this;
         super.onCreate();
-        Fabric.with(this, new Crashlytics());
     }
 }
